@@ -1,0 +1,180 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  margin-bottom: 0;
+}
+
+
+
+/* header */
+header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 20%;
+
+}
+
+header>h1#subject {
+  margin-left: 1%;
+}
+
+
+
+
+
+/* Main */
+div#Main {
+  display: flex;
+  
+  height: 70%;
+
+}
+
+div#Main>div#section {
+  
+  width: 100%;
+  max-height: 100%;
+  
+  display: flex;
+  
+
+}
+
+div#Main>div#section>div#article1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+}
+
+
+
+
+div#Main>div#section>div#article1>div#problem {
+ 
+}
+
+div#Main>div#section>div#article1>div#problem {
+  padding-top: 4%;
+  padding-bottom: 4%;
+  padding-right: 2%;
+  padding-left: 2%;
+  width: 93%;
+}
+
+div#Main>div#section>div#article1>div#problem>p {
+  font-weight: bold;
+}
+
+div#Main>div#section>div#article1>div#problem>table#answers,
+div#Main>div#section>div#article2>div#problem>table#answers {
+  width: 100%;
+  height: 10vh;
+  margin: auto;
+  /* border:solid 1px; */
+}
+
+
+
+
+
+
+
+/* footer */
+footer {
+  text-align: center;
+  height: 100%;
+align-items: center;
+
+}
+
+
+
+footer>div#cnt_problem {
+  width: auto;
+ justify-content: center;
+  font-weight: bold;
+  color: blue;
+  padding-right: 3%;
+}
+
+footer>div#Answer>button {
+  width: 120px;
+  height: 40px;
+  font-size: 16pt;
+  margin-bottom: 1em;
+}
+
+footer>div#Answer>button:hover {
+  background-color: black;
+  color: white;
+}
+
+
+
+/* gradecard */
+div#gradecard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 60px;
+  width: 80%;
+  margin: auto;
+}
+
+#tbl_gradecard>tbody>tr:nth-child(1)>th {
+  font-weight: bold;
+  background-color: #F0E2FB;
+  border-bottom: 1px solid;
+  color: black;
+  font-size: 20pt;
+}
+
+table#tbl_gradecard {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid;
+  
+  
+}
+
+table#tbl_gradecard>tbody>tr>td {
+  border: 1px solid;
+  width: 6em;
+  height: 2em;
+}
+
+table#tbl_gradecard>tbody>tr#quiz_num>td:first-child,
+table#tbl_gradecard>tbody>tr#ox>td:first-child {
+  /*background-color: pink;*/
+  font-weight: bold;
+  width: 10em;
+}
+
+div#gradecard>div#score {
+  font-weight: bold;
+  text-align: end;
+  margin-bottom:2em;
+}
+
+div#gradecard>div#result {
+  text-align: center;
+  font-size: 16pt;
+
+}
+
+

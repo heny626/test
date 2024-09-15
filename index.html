@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시험 시 유의사항</title>
+  <style type="text/css">
+    body{
+      margin:0;
+      padding:0;
+      
+    }
+    body > div.container{
+      margin:auto;
+      width: 90%;
+      height:100%;
+    }
+
+
+    /* header */
+    header{
+      display:flex;
+      flex-direction: column;
+      border-bottom: solid 5px black;
+      padding-bottom: 0%;
+
+    }
+    header > div.subject{
+      display:flex;
+      flex-direction:column;
+      text-align: center;
+    }
+    header > div.subject> p{
+      font-size:1.5rem;
+      position:relative;
+      margin-bottom:1px;
+    }
+    header > div.subject> h1{
+      margin-top:10px;
+      font-size: 3rem;
+    }
+
+
+
+    /* Main */
+    div.Main{
+      margin-top:3%;
+      border:solid 1px black;
+      height: 60%;
+      margin-bottom:3%;
+      
+    }
+    div.Main > h1{
+      position:relative;
+      top:1%;
+      text-align: center;
+      padding-bottom: 0;
+    }
+    div.Main > ul {
+      width:80%;
+      margin:auto;
+      list-style:circle;
+      font-size: 13pt;
+    }
+    div.Main > ul > li{
+      margin-bottom: 3%;
+    }
+
+
+
+    
+    /* footer */
+    footer{ 
+      text-align: center;
+      margin-bottom: 3%;
+    }
+
+    footer > div#start_test{
+      height:100%;
+      
+    }
+    footer > div#start_test > a {
+      width: 100px;
+    }
+    footer > div#start_test > a > button{
+      width: 130px;
+      height:40px;
+      font-size:14pt;
+    }
+    footer > div#start_test > a > button:hover{
+      background-color: black;
+      color:white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- header -->
+    <header>
+      <div class="subject">
+        <p>2025학년도 <br> 연애수학능력시험</p>
+        <h1>O O 탐 구 영 역</h1> 
+      </div>
+    </header>
+
+    <!-- Main -->
+    <div class="Main">
+      <h1><수험생 유의사항></h1>
+      <ul>
+        
+        <li>시험 전 감독관의 안내사항을 끝까지 듣고, 하단의 시작버튼을 눌러 시험을 시작하시면 됩니다.</li>
+        <li>합격점수는 60점 이상이며, 문제당 10점입니다.</li>
+        <li>제한시간 5분 내에 꼭 제출하기 버튼을 눌러서 시험지를 제출하셔야 합니다.</li>
+        <li>본 시험에 합격하지 못한 수험생은 <b>큰 화</b>를 입으실겁니다.</li>
+<br>
+      </ul>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <div id="start_test">
+        <a href="고사.html"><button type="button">응시 시작</button></a> <br>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

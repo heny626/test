@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OO고사</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript">
+
+    window.onload = function(){
+
+
+      const arr_quizData = [
+        {
+          question: "1. 내가 가장 좋아하는 색깔은?",
+          answers :{
+            1 : " 보라",
+            2 : " 연보라",
+            3 : " 민트",
+            4 : " 검정"
+          },
+          correct : 2 
+        },
+        {
+          question: "2. 최근 내가 등록한 학원은?",
+          answers : {
+            1 : " 미디",
+            2 : " 드럼",
+            3 : " 주짓수",
+            4 : " 스쿼시"
+          },
+          correct : 1
+        },
+        {
+          question : "3. 나의 토익 최고 점수는?",
+          answers  : { 
+              1 : " 550점",
+              2 : " 650점",
+              3 : " 750점",
+              4 : " 850점",
+          },
+          correct : 4
+        },
+        {
+          question: "4. 내 생일은?",
+          answers :{
+            1 : " 6월 25일",
+            2 : " 6월 26일",
+            3 : " 6월 27일",
+            4 : " 6월 28일"
+          },
+          correct : 2
+        },
+        {
+          question: "5. ",
+          answers :{
+            1 : " 9월 15일",
+            2 : " 9월 16일",
+            3 : " 9월 17일",
+            4 : " 9월 18일"
+          },
+          correct : 3
+        },
+        {
+          question: "6. ?",
+          answers :{
+            1 : " 모범직원상",
+            2 : " 우수상",
+            3 : " 대통령상",
+            4 : " 사업소장상"
+          },
+          correct : 4
+        },
+        {
+          question: "7. 다음 중 내가 한번도 배운 적 없는 것은?",
+          answers :{
+            1 : " 플룻",
+            2 : " 바이올린",
+            3 : " 농구",
+            4 : " 피아노"
+          },
+          correct : 1
+        },
+        {
+          question: "8. ?",
+          answers :{
+            1 : " ",
+            2 : " ",
+            3 : " ",
+            4 : " ",
+          },
+          correct : 3 
+        },
+        {
+          question: "9. 나의 오버워치 최고 티어는?",
+          answers :{
+            1 : " 브론즈",
+            2 : " 실버",
+            3 : " 골드",
+            4 : " 다이아"
+          },
+          correct : 2
+        },
+        {
+          question: "10. 다음 중 내가 못 타는 것은?",
+          answers :{
+            1 : " 자전거",
+            2 : " 보드",
+            3 : " 스케이트",
+            4 : " 스키"
+          },
+          correct : 4 
+        }
+      ];//end of const arr_quizData;
+
+
+      const quiz_display1 = document.querySelector("div#Main > div#section > div#article1");  //문제들이 들어갈 공간 잡기
+     
+      // 퀴즈 문항을 html 로 만들어서 article1,2 안에 넣기
+      let html = ``;
+      let quiz_cnt = 1;
+      arr_quizData.forEach((item,idx) => {
+        html += `<div id="problem" class="q${idx}">`;
+        html += `<p id="q${idx}">${item.question}</p>`;
+        let num=``;
+        let cnt=1;
+        let second_html ="";
+        html += `<table id="answers">`;
+        html +=`<tr>`;
+        for(let key in item.answers) {
+            html +=`<td>`;
+          
+          if(cnt<=2){ //문항 2번 전까진 바로담기
+            html += `<input type="radio" id="q${idx}r${cnt}" name="q${idx}" value="${key}"/><label for="q${idx}r${cnt}">${num}${item.answers[key]}</label>`;
+            html +=`</td>`;
+          }//end of if---
+          else{
+            second_html += `<td><input type="radio" id="q${idx}r${cnt}" name="q${idx}" value="${key}"/><label for="q${idx}r${cnt}">${num}${item.answers[key]}</label>
+                            </td>`;
+          }
+          cnt++;
+        }//end of for----
+        html += `</tr>`;
+        html += `<tr>`;
+        html += `${second_html}`; //1,2번 제외하면 아래에 출력하도록 하기
+        html += `</tr>`;
+        html += `</table>`;
+        html += `</div>`;
+
+        if(quiz_cnt<=(arr_quizData.length)){ 
+          quiz_display1.innerHTML += html;
+          html="";
+        }//end of if--
+        quiz_cnt++;
+      })//end of arr_quizData.forEach----
+    
+
+
+
+
+    
+    // 제출하기 버튼 클릭시 할 함수 만들기
+    const btnSubmit = document.querySelector("button#btnSubmit"); //제출버튼 소스잡기
+    const handel_btnSubmit = () => {
+      hide();   // 문제영역 가리는 함수 호출
+      check(); //채점하는함수 호출
+         
+    };
+    btnSubmit.addEventListener('click',handel_btnSubmit);
+
+    //문제영역 가리는 함수 만들기
+         function hide() {
+	const phide = document.getElementById('container');
+           phide.style.display = 'none';
+          }
+
+
+
+    // 채점하는 함수 만들기
+      function check() {
+
+
+        let answerCount = 0; // 정답개수 누적용
+        const gradecard = document.querySelector(`div#gradecard > table#tbl_gradecard`);
+        let html = ` <tr style="height: 60px">
+                        <th colspan="11">성적표</th>
+                      </tr>
+                      <tr id="quiz_num">
+                        <td>번호</td>
+                      </tr>
+                      </tr>
+                      <tr id="ox">
+                        <td>채점</td>
+                      </tr>`;
+        gradecard.innerHTML = html;
+        arr_quizData.forEach( (item, idx) => {
+          let radio_length = document.getElementsByName(`q${idx}`).length; //라디오의 길이(for문 사용위한것)
+          let isCheckAnswer = false;  //라디오 선택유무 검사용
+          for(let i=0; i<radio_length; i++) {
+            if( document.getElementsByName(`q${idx}`)[i].checked ) {
+              isCheckAnswer = true;
+              break;
+            }
+          }// end of for---------------------
+
+          let userAnswer;
+          if(isCheckAnswer) { // 답을 선택한 경우
+            userAnswer = document.querySelector(`input[name="q${idx}"]:checked`).value; 
+          }
+          else { // 답을 선택하지 않은 경우 
+            userAnswer = "X";
+          }
+
+          const quiz_num = document.querySelector(`table#tbl_gradecard > tbody > tr#quiz_num`);
+          const answers = document.querySelector(`table#tbl_gradecard > tbody > tr#answers`);
+          const choice_answer = document.querySelector(`table#tbl_gradecard > tbody > tr#choice_answer`);
+          const ox = document.querySelector(`table#tbl_gradecard > tbody > tr#ox`);
+          html = `<td>${idx+1}</td>`;
+          quiz_num.innerHTML += html;
+          
+          if(userAnswer == item.correct){ //정답을 맞춘 경우
+            html = "<td style='color:black';>O</td>";
+            answerCount++;
+          }
+          else{ //틀렸다면
+            html = "<td style='color:black';>X</td>";
+          }
+          ox.innerHTML += html;
+        });//end of arr_quizData.forEach( (item, idx)---
+
+        const result= document.getElementById("gradecard");
+        html = `<br><div id="score">점수 : ${answerCount*10}점</div>`
+        if(answerCount==10){  //만점일 경우
+          html += `<div id="result" style="color : #C481FA">만점입니다! </div>`;
+        }
+        else if(answerCount>5){  //합격일 경우
+          html += `<div id="result" style="color : blue"> ~합격~ </div>`;
+        }
+        else{ //불합격일 경우
+          html += `<div id="result" style="color : red"> 불.합.격 </div>`;
+        }
+        result.innerHTML += html;
+        result.style.height = "400px";
+      }//end of function check(){}--------------
+
+
+    }//end of window.onload---
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <!-- header -->
+    <header>
+    </header>
+    <!-- Main -->
+    <div id="Main">
+      <div id="section">
+        <div id="article1">
+      </div>
+      </div>
+    </div>
+    <!-- footer -->
+
+    <footer>
+      <div id="cnt_problem">
+      </div>
+      <div id="Answer"> <br>
+     <button type="button" id="btnSubmit">제출하기</button>
+     
+
+      </div>
+    </footer>
+</div>
+
+  <!-- gradecard -->
+    <div id="gradecard">
+      <table id="tbl_gradecard">
+      </table>
+    </div>
+
+
+
+
+</body>
+</html>
